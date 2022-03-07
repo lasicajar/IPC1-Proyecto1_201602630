@@ -5,6 +5,10 @@
  */
 package Presentacion;
 
+import biblioteca.*;
+
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lusvin
@@ -58,9 +62,11 @@ public class CrearBiblio extends javax.swing.JFrame {
         txtcopias = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         btncargamasiva = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcboxdoc = new javax.swing.JComboBox<>();
         btncancelar = new javax.swing.JButton();
         btncargar = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        txtdisponible = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -118,8 +124,8 @@ public class CrearBiblio extends javax.swing.JFrame {
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 90, 20));
 
         jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel16.setText("TAMAÑO:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 100, 20));
+        jLabel16.setText("DISPO:");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 390, 50, 20));
 
         jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel17.setText("ISBN-ID:");
@@ -159,7 +165,7 @@ public class CrearBiblio extends javax.swing.JFrame {
         jPanel1.add(txtisbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 200, -1));
 
         txttamanio.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jPanel1.add(txttamanio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 200, -1));
+        jPanel1.add(txttamanio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 60, -1));
 
         txtcopias.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jPanel1.add(txtcopias, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 70, -1));
@@ -171,9 +177,14 @@ public class CrearBiblio extends javax.swing.JFrame {
         btncargamasiva.setText("Carga Masiva");
         jPanel1.add(btncargamasiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 140, 30));
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Libro", "Revista", "Tesis", "Libro Digital" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 90, -1));
+        jcboxdoc.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jcboxdoc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Libro", "Revista", "Tesis", "Libro Digital" }));
+        jcboxdoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcboxdocActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jcboxdoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 90, -1));
 
         btncancelar.setText("Cancelar");
         btncancelar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -184,7 +195,19 @@ public class CrearBiblio extends javax.swing.JFrame {
         jPanel1.add(btncancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 450, 100, 30));
 
         btncargar.setText("Cargar");
+        btncargar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btncargarMouseClicked(evt);
+            }
+        });
         jPanel1.add(btncargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, 100, 30));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel18.setText("TAMAÑO:");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 70, 20));
+
+        txtdisponible.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jPanel1.add(txtdisponible, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 60, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/img/gradientmediun.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -207,6 +230,186 @@ public class CrearBiblio extends javax.swing.JFrame {
         this.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_btncancelarMouseClicked
+
+    private void jcboxdocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcboxdocActionPerformed
+
+        if (((String) jcboxdoc.getSelectedItem()).equalsIgnoreCase("-")) {
+            txtarea.setEnabled(false);
+            txtautor.setEnabled(false);
+            txtaño.setEnabled(false);
+            txtcategoria.setEnabled(false);
+            txtcopias.setEnabled(false);
+            txtdescrip.setEnabled(false);
+            txtedicion.setEnabled(false);
+            txtejemplares.setEnabled(false);
+            txtisbn.setEnabled(false);
+            txtpalabra.setEnabled(false);
+            txttamanio.setEnabled(false);
+            txttemas.setEnabled(false);
+            txttitulo.setEnabled(false);
+            txtdisponible.setEnabled(false);
+        } else if (((String) jcboxdoc.getSelectedItem()).equalsIgnoreCase("Libro")) {
+            txtcategoria.setEnabled(false);
+            txtejemplares.setEnabled(false);
+            txtarea.setEnabled(false);
+            txttamanio.setEnabled(false);
+
+            txtautor.setEnabled(true);
+            txtaño.setEnabled(true);
+            txtcopias.setEnabled(true);
+            txtdescrip.setEnabled(true);
+            txtedicion.setEnabled(true);
+            txtisbn.setEnabled(true);
+            txtpalabra.setEnabled(true);
+            txttemas.setEnabled(true);
+            txttitulo.setEnabled(true);
+            txtdisponible.setEnabled(true);
+        } else if (((String) jcboxdoc.getSelectedItem()).equalsIgnoreCase("Revista")) {
+            txtarea.setEnabled(false);
+            txttamanio.setEnabled(false);
+
+            txtautor.setEnabled(true);
+            txtaño.setEnabled(true);
+            txtcategoria.setEnabled(true);
+            txtcopias.setEnabled(true);
+            txtdescrip.setEnabled(true);
+            txtedicion.setEnabled(true);
+            txtejemplares.setEnabled(true);
+            txtisbn.setEnabled(true);
+            txtpalabra.setEnabled(true);
+            txttemas.setEnabled(true);
+            txttitulo.setEnabled(true);
+            txtdisponible.setEnabled(true);
+        } else if (((String) jcboxdoc.getSelectedItem()).equalsIgnoreCase("Tesis")) {
+            txtcategoria.setEnabled(false);
+            txtejemplares.setEnabled(false);
+            txttamanio.setEnabled(false);
+
+            txtarea.setEnabled(true);
+            txtautor.setEnabled(true);
+            txtaño.setEnabled(true);
+            txtcopias.setEnabled(true);
+            txtdescrip.setEnabled(true);
+            txtedicion.setEnabled(true);
+            txtisbn.setEnabled(true);
+            txtpalabra.setEnabled(true);
+            txttemas.setEnabled(true);
+            txttitulo.setEnabled(true);
+            txtdisponible.setEnabled(true);
+        } else if (((String) jcboxdoc.getSelectedItem()).equalsIgnoreCase("Libro digital")) {
+            txtarea.setEnabled(false);
+            txtautor.setEnabled(true);
+            txtaño.setEnabled(true);
+            txtcategoria.setEnabled(false);
+            txtcopias.setEnabled(false);
+            txtdescrip.setEnabled(true);
+            txtedicion.setEnabled(true);
+            txtejemplares.setEnabled(false);
+            txtisbn.setEnabled(true);
+            txtpalabra.setEnabled(true);
+            txttamanio.setEnabled(true);
+            txttemas.setEnabled(true);
+            txttitulo.setEnabled(true);
+            txtdisponible.setEnabled(false);
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcboxdocActionPerformed
+
+
+    private void btncargarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncargarMouseClicked
+        boolean permite = false;
+
+        if (txtisbn.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Ingrese Datos por favor...", "Faltan Datos ", JOptionPane.WARNING_MESSAGE);
+        } else if (((String) jcboxdoc.getSelectedItem()).equalsIgnoreCase("Libro")) {
+            if (biblioteca.Biblioteca.libros[0] == null) {
+                permite = true;
+            } else {
+                for (int i = 0; i < biblioteca.Biblioteca.contlibros; i++) {
+                    if (biblioteca.Biblioteca.libros[i].getIsbn() == Integer.parseInt(txtisbn.getText())) {
+                        JOptionPane.showMessageDialog(null, "El Documento con este ID ya existe...", "Error al crear documento", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        permite = true;
+                    }
+                }
+            }
+            if (permite) {
+                String palabra[] = txtpalabra.getText().split(",");
+                String tema[] = txttemas.getText().split(",");
+                biblioteca.Biblioteca.libros[biblioteca.Biblioteca.contlibros] = new Libro(Integer.parseInt(txtcopias.getText()), Integer.parseInt(txtdisponible.getText()), Integer.parseInt(txtisbn.getText()), 0, Integer.parseInt(txtaño.getText()), txtautor.getText(), txtdescrip.getText(), Integer.parseInt(txtedicion.getText()), palabra, tema, txttitulo.getText());
+                JOptionPane.showMessageDialog(null, "El Libro: " + biblioteca.Biblioteca.libros[biblioteca.Biblioteca.contlibros].getTitulo() + " fue agregado exitosamente", "Libro agregado", JOptionPane.INFORMATION_MESSAGE);
+                biblioteca.Biblioteca.contlibros++;
+                setVisible(false);
+            }
+
+        } else if (((String) jcboxdoc.getSelectedItem()).equalsIgnoreCase("Revista")) {
+            if (biblioteca.Biblioteca.revistas[0] == null) {
+                permite = true;
+            } else {
+                for (int i = 0; i < biblioteca.Biblioteca.contrevistas; i++) {
+                    if (biblioteca.Biblioteca.revistas[i].getId()== Integer.parseInt(txtisbn.getText())) {
+                        JOptionPane.showMessageDialog(null, "El Documento con este ID ya existe...", "Error al crear documento", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        permite = true;
+                    }
+                }
+            }
+            if (permite) {
+                String palabra[] = txtpalabra.getText().split(",");
+                String tema[] = txttemas.getText().split(",");
+                biblioteca.Biblioteca.revistas[biblioteca.Biblioteca.contrevistas] = new Revista(Integer.parseInt(txtisbn.getText()), txtcategoria.getText(), Integer.parseInt(txtcopias.getText()), Integer.parseInt(txtdisponible.getText()), Integer.parseInt(txtejemplares.getText()) , 1, Integer.parseInt(txtaño.getText()), txtautor.getText(), txtdescrip.getText(), Integer.parseInt(txtedicion.getText()), palabra, tema, txttitulo.getText());
+                JOptionPane.showMessageDialog(null, "La Revista: " + biblioteca.Biblioteca.revistas[biblioteca.Biblioteca.contrevistas].getTitulo() + " fue agregada exitosamente", "Revista agregada", JOptionPane.INFORMATION_MESSAGE);
+                biblioteca.Biblioteca.contrevistas++;
+                setVisible(false);
+            }
+            
+
+        }else if (((String) jcboxdoc.getSelectedItem()).equalsIgnoreCase("Tesis")) {
+            if (biblioteca.Biblioteca.tesis[0] == null) {
+                permite = true;
+            } else {
+                for (int i = 0; i < biblioteca.Biblioteca.conttesis; i++) {
+                    if (biblioteca.Biblioteca.tesis[i].getId()== Integer.parseInt(txtisbn.getText())) {
+                        JOptionPane.showMessageDialog(null, "El Documento con este ID ya existe...", "Error al crear documento", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        permite = true;
+                    }
+                }
+            }
+            if (permite) {
+                String palabra[] = txtpalabra.getText().split(",");
+                String tema[] = txttemas.getText().split(",");
+                biblioteca.Biblioteca.tesis[biblioteca.Biblioteca.conttesis] = new Tesis(Integer.parseInt(txtisbn.getText()),  Integer.parseInt(txtcopias.getText()), Integer.parseInt(txtdisponible.getText()),txtarea.getText(), 2, Integer.parseInt(txtaño.getText()), txtautor.getText(), txtdescrip.getText(), Integer.parseInt(txtedicion.getText()), palabra, tema, txttitulo.getText());
+                JOptionPane.showMessageDialog(null, "La Tesis: " + biblioteca.Biblioteca.tesis[biblioteca.Biblioteca.conttesis].getTitulo() + " fue agregada exitosamente", "Tesis agregada", JOptionPane.INFORMATION_MESSAGE);
+                biblioteca.Biblioteca.conttesis++;
+                setVisible(false);
+            }
+            
+
+        }else if (((String) jcboxdoc.getSelectedItem()).equalsIgnoreCase("Libro Digital")) {
+            if (biblioteca.Biblioteca.librosDigital[0] == null) {
+                permite = true;
+            } else {
+                for (int i = 0; i < biblioteca.Biblioteca.contlibrodigital; i++) {
+                    if (biblioteca.Biblioteca.librosDigital[i].getId()== Integer.parseInt(txtisbn.getText())) {
+                        JOptionPane.showMessageDialog(null, "El Documento con este ID ya existe...", "Error al crear documento", JOptionPane.WARNING_MESSAGE);
+                    } else {
+                        permite = true;
+                    }
+                }
+            }
+            if (permite) {
+                String palabra[] = txtpalabra.getText().split(",");
+                String tema[] = txttemas.getText().split(",");
+                biblioteca.Biblioteca.librosDigital[biblioteca.Biblioteca.contlibrodigital] = new LibroDigital(Integer.parseInt(txtisbn.getText()),  Integer.parseInt(txttamanio.getText()), 3, Integer.parseInt(txtaño.getText()), txtautor.getText(), txtdescrip.getText(), Integer.parseInt(txtedicion.getText()), palabra, tema, txttitulo.getText());
+                JOptionPane.showMessageDialog(null, "El Libro Digital: " + biblioteca.Biblioteca.librosDigital[biblioteca.Biblioteca.contlibrodigital].getTitulo() + " fue agregado exitosamente", "Libro digital agregado", JOptionPane.INFORMATION_MESSAGE);
+                biblioteca.Biblioteca.contlibrodigital++;
+                setVisible(false);
+            }
+
+        }
+
+    }//GEN-LAST:event_btncargarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -247,7 +450,6 @@ public class CrearBiblio extends javax.swing.JFrame {
     private javax.swing.JButton btncancelar;
     private javax.swing.JButton btncargamasiva;
     private javax.swing.JButton btncargar;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -256,6 +458,7 @@ public class CrearBiblio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -264,6 +467,7 @@ public class CrearBiblio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JComboBox<String> jcboxdoc;
     private javax.swing.JLabel lbcopi;
     private javax.swing.JTextField txtarea;
     private javax.swing.JTextField txtautor;
@@ -271,6 +475,7 @@ public class CrearBiblio extends javax.swing.JFrame {
     private javax.swing.JTextField txtcategoria;
     private javax.swing.JTextField txtcopias;
     private javax.swing.JTextField txtdescrip;
+    private javax.swing.JTextField txtdisponible;
     private javax.swing.JTextField txtedicion;
     private javax.swing.JTextField txtejemplares;
     private javax.swing.JTextField txtisbn;

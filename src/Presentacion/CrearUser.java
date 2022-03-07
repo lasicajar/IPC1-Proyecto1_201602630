@@ -148,9 +148,10 @@ public class CrearUser extends javax.swing.JFrame {
 
     private void jbtcrearuserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtcrearuserMouseClicked
        
-        System.out.println("valor de contador "+biblioteca.Biblioteca.contuser);
+        
+        //System.out.println("valor de contador "+biblioteca.Biblioteca.contuser);
         boolean permite = false;
-        System.out.println("user en posicion 1: " + biblioteca.Biblioteca.users[0]);
+       // System.out.println("user en posicion 1: " + biblioteca.Biblioteca.users[0]);
 
         if (jtxid.getText().length() == 0 || 0 == jtxuser.getText().length()) {
             JOptionPane.showMessageDialog(null, "Ingrese Datos por favor...", "Faltan Datos ", JOptionPane.WARNING_MESSAGE);

@@ -7,24 +7,29 @@ import Presentacion.*;
  * @author Lusvin
  */
 public class Biblioteca {
+
     //Variables globales
     //Usuario administrador
     public static Administrador admin1 = new Administrador(1, "admin", "admin", "admin", "admin");
     //Conteo de Usuario y vector de usuarios.
     public static Integer contuser = 0;
     public static Usuario users[] = new Usuario[10];
+   
     //Conteo de Documentos y vector de documentos. 
-    public static Documento libros[] = new Libro[30];
-    public static Documento revistas[] = new Revista[30];
-    public static Documento tesis[] = new Tesis[30];
-    public static Documento librosDigital[] = new LibroDigital[30];
-    
-    
+    public static Integer contlibros = 0;
+    public static Integer contrevistas = 0;
+    public static Integer conttesis = 0;
+    public static Integer contlibrodigital = 0;
+
+    public static Libro libros[] = new Libro[30];
+    public static Revista revistas[] = new Revista[30];
+    public static Tesis tesis[] = new Tesis[30];
+    public static LibroDigital librosDigital[] = new LibroDigital[30];
 
     public static void main(String[] args) {
 
-  //    users[0]= new Usuario(2016, "lusvin", "sicaja", "lsicaja", "estudiante", "1234");
- //      users[1]= new Usuario(2017, "alex", "rami", "arami", "estudiante", "1234");
+        //    users[0]= new Usuario(2016, "lusvin", "sicaja", "lsicaja", "estudiante", "1234");
+        //      users[1]= new Usuario(2017, "alex", "rami", "arami", "estudiante", "1234");
 //        users[2]= new Usuario(2018, "david", "alof", "dalof", "catedratico", "4321");
         PantallaInicio pi = new PantallaInicio();
         pi.setVisible(true);
