@@ -68,6 +68,11 @@ public class VerPrestamo extends javax.swing.JFrame {
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 430, 50));
 
         jbtback.setText("Regresar");
+        jbtback.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtbackMouseClicked(evt);
+            }
+        });
         jPanel1.add(jbtback, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, 130, 60));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/img/gradientgranmedia.png"))); // NOI18N
@@ -89,6 +94,13 @@ public class VerPrestamo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtbackMouseClicked
+        this.setVisible(false);
+        Prestamo pres = new   Prestamo();
+        pres.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtbackMouseClicked
 
     /**
      * @param args the command line arguments

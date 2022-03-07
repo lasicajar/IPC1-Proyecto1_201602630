@@ -39,6 +39,7 @@ public class BibliotecaVirtual extends javax.swing.JFrame {
         jtxbuscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,15 +48,31 @@ public class BibliotecaVirtual extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jbtlogout.setText("Cerrar Sesión");
-        jPanel1.add(jbtlogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 40, 130, 40));
+        jbtlogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtlogoutMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jbtlogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 70, 130, 40));
 
         jbtback.setText("Regresar");
-        jPanel1.add(jbtback, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 100, 130, 40));
+        jbtback.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtbackMouseClicked(evt);
+            }
+        });
+        jPanel1.add(jbtback, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 130, 130, 40));
 
         jButton1.setText("Mi Biblioteca Virtual");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 180, 50));
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 220, 180, 50));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Año", "Edicion", "Autor", " " }));
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, 210, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -78,13 +95,17 @@ public class BibliotecaVirtual extends javax.swing.JFrame {
 
         jbtBuscar.setText("Buscar");
         jPanel1.add(jbtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, -1, -1));
-        jPanel1.add(jtxbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 210, -1));
+        jPanel1.add(jtxbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 210, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/img/Usac_logo.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 490, 190));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/img/user.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 130, 150));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 50, 130, 150));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 270, 40));
+        jLabel4.setText(biblioteca.Biblioteca.users[Login.userlogpos].getlogeo());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/img/gradientegrande.png"))); // NOI18N
         jLabel3.setText("jLabel3");
@@ -104,6 +125,30 @@ public class BibliotecaVirtual extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtlogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtlogoutMouseClicked
+        this.setVisible(false);
+        PantallaInicio pi = new PantallaInicio();
+        pi.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtlogoutMouseClicked
+
+    private void jbtbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtbackMouseClicked
+        this.setVisible(false);
+        User us = new User();
+        us.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtbackMouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        this.setVisible(false);
+        BiblioteVirtualuser bvu = new BiblioteVirtualuser();
+        bvu.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -146,6 +191,7 @@ public class BibliotecaVirtual extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

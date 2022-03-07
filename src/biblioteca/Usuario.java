@@ -119,4 +119,15 @@ public class Usuario {
         this.password = password;
     }
 
+    public String getlogeo(){
+    return ("Bienvenido: "+ this.user );  
+    }
+    
+    public String getDatoslog() {
+        return ("ID: "+ this.id + "\n" + "Nombre: " + this.nombre +" "+ this.apellido+ " \n"+ "Nickname: "+ this.user+ "\n"+ "Rol: "+ this.rol);
+    }
+
+    
+    
+    
 }

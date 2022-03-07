@@ -37,7 +37,6 @@ public class BiblioteVirtualuser extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Mi Biblioteca Virtual");
-        setPreferredSize(new java.awt.Dimension(900, 500));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -72,9 +71,19 @@ public class BiblioteVirtualuser extends javax.swing.JFrame {
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 400, 330));
 
         jbtlogout.setText("Cerrar Sesión");
+        jbtlogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtlogoutMouseClicked(evt);
+            }
+        });
         jPanel1.add(jbtlogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, 120, 50));
 
         jbtback.setText("Regresar ");
+        jbtback.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtbackMouseClicked(evt);
+            }
+        });
         jPanel1.add(jbtback, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 120, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/img/gradientegrande.png"))); // NOI18N
@@ -100,6 +109,22 @@ public class BiblioteVirtualuser extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtbackMouseClicked
+        this.setVisible(false);
+        BibliotecaVirtual bv = new BibliotecaVirtual();
+        bv.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtbackMouseClicked
+
+    private void jbtlogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtlogoutMouseClicked
+        this.setVisible(false);
+        PantallaInicio pi = new PantallaInicio();
+        pi.setVisible(true);
+                
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtlogoutMouseClicked
 
     /**
      * @param args the command line arguments

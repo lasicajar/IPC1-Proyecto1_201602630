@@ -12,7 +12,7 @@ public class Login extends javax.swing.JFrame {
     PantallaInicio pi = new PantallaInicio();
     String userlog;
     String userlogpass;
-    int userlogpos;
+    static int userlogpos;
 
     public Login() {
 

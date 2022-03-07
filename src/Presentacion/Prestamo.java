@@ -43,6 +43,7 @@ public class Prestamo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jbtlogout = new javax.swing.JButton();
         jbtback = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -55,8 +56,9 @@ public class Prestamo extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/img/Usac_logo.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 482, 180));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 190, -1));
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Libro", "Revista", "Tesis", "Libro Digital" }));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 230, 190, -1));
         getContentPane().add(jtxbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 190, -1));
 
         jTable1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -76,37 +78,79 @@ public class Prestamo extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 580, 120));
 
         jbtbuscar.setText("Buscar");
-        getContentPane().add(jbtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, 70, -1));
+        getContentPane().add(jbtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 90, -1));
 
         jbtmisprestamos.setText("Ver Mis Prestamos");
+        jbtmisprestamos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtmisprestamosMouseClicked(evt);
+            }
+        });
         getContentPane().add(jbtmisprestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 150, 40));
 
         jbtfiltro.setText("Filtrar");
-        getContentPane().add(jbtfiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 260, 60, -1));
+        getContentPane().add(jbtfiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 260, 90, -1));
 
         jbtreportedoc.setText("Reporte Existencias");
         getContentPane().add(jbtreportedoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 150, 40));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 230, 190, 20));
+        jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "año", "autor", "edicion", "id" }));
+        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 190, 20));
 
         jLabel4.setText("Filtrar Por:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 200, 90, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/img/user.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 50, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, -1, -1));
 
         jbtlogout.setText("Cerrar Sesión");
+        jbtlogout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtlogoutMouseClicked(evt);
+            }
+        });
         getContentPane().add(jbtlogout, new org.netbeans.lib.awtextra.AbsoluteConstraints(742, 58, 126, 48));
 
         jbtback.setText("Regresar");
+        jbtback.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtbackMouseClicked(evt);
+            }
+        });
         getContentPane().add(jbtback, new org.netbeans.lib.awtextra.AbsoluteConstraints(742, 124, 126, 43));
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 270, 40));
+        jLabel5.setText(biblioteca.Biblioteca.users[Login.userlogpos].getlogeo());
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/img/gradientegrande.png"))); // NOI18N
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jbtbackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtbackMouseClicked
+        this.setVisible(false);
+        User us = new User();
+        us.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtbackMouseClicked
+
+    private void jbtlogoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtlogoutMouseClicked
+        this.setVisible(false);
+        PantallaInicio pi = new PantallaInicio();
+        pi.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtlogoutMouseClicked
+
+    private void jbtmisprestamosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtmisprestamosMouseClicked
+        this.setVisible(false);
+        VerPrestamo vpres = new VerPrestamo();
+        vpres.setVisible(true);
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtmisprestamosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -150,6 +194,7 @@ public class Prestamo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
