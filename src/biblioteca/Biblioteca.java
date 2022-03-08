@@ -21,9 +21,9 @@ public class Biblioteca {
     public static Integer conttesis = 0;
     public static Integer contlibrodigital = 0;
 
-    public static Libro libros[] = new Libro[30];
-    public static Revista revistas[] = new Revista[30];
-    public static Tesis tesis[] = new Tesis[30];
+    public static Libro libros[] = new Libro[50];
+    public static Revista revistas[] = new Revista[50];
+    public static Tesis tesis[] = new Tesis[50];
     public static LibroDigital librosDigital[] = new LibroDigital[30];
 
     public static void main(String[] args) {
@@ -31,9 +31,15 @@ public class Biblioteca {
         //    users[0]= new Usuario(2016, "lusvin", "sicaja", "lsicaja", "estudiante", "1234");
         //      users[1]= new Usuario(2017, "alex", "rami", "arami", "estudiante", "1234");
 //        users[2]= new Usuario(2018, "david", "alof", "dalof", "catedratico", "4321");
+
+
+        
         PantallaInicio pi = new PantallaInicio();
         pi.setVisible(true);
 
+//            CargaMasiva cm = new CargaMasiva();
+//            cm.setVisible(true);
+            
         String[] des = {"el mjeor", "libro"};
         String[] des2 = {"el mjeor", "libro", "al mamater"};
 

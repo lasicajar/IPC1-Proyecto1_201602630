@@ -127,7 +127,7 @@ public class VerUser extends javax.swing.JFrame {
     private void jbtcancelarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtcancelarMouseClicked
         this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jbtcancelarMouseClicked
-
+   
     private void jtbbuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbbuscarMouseClicked
 
         boolean encontrar = false;

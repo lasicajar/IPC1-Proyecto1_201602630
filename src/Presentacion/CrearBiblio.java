@@ -175,6 +175,11 @@ public class CrearBiblio extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 150, 30));
 
         btncargamasiva.setText("Carga Masiva");
+        btncargamasiva.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btncargamasivaMouseClicked(evt);
+            }
+        });
         jPanel1.add(btncargamasiva, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 140, 30));
 
         jcboxdoc.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -410,6 +415,13 @@ public class CrearBiblio extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btncargarMouseClicked
+
+    private void btncargamasivaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btncargamasivaMouseClicked
+        this.setVisible(false);
+               CargaMasiva cm = new CargaMasiva();
+        cm.setVisible(true);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btncargamasivaMouseClicked
 
     /**
      * @param args the command line arguments

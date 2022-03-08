@@ -5,6 +5,9 @@
  */
 package Presentacion;
 
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lusvin
@@ -61,6 +64,8 @@ public class VerLibro extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         btnback = new javax.swing.JButton();
         btnlimpiar = new javax.swing.JButton();
+        jLabel18 = new javax.swing.JLabel();
+        txtdisponible = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -125,42 +130,54 @@ public class VerLibro extends javax.swing.JFrame {
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 70, 20));
 
         txtejemplares.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtejemplares.setEnabled(false);
         jPanel1.add(txtejemplares, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 70, -1));
 
         txtautor.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtautor.setEnabled(false);
         jPanel1.add(txtautor, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, 200, -1));
 
         txtaño.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtaño.setEnabled(false);
         jPanel1.add(txtaño, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 200, -1));
 
         txttitulo.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txttitulo.setEnabled(false);
         jPanel1.add(txttitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 200, -1));
 
         txtdescrip.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtdescrip.setEnabled(false);
         jPanel1.add(txtdescrip, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 200, -1));
 
         txtpalabra.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtpalabra.setEnabled(false);
         jPanel1.add(txtpalabra, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 420, 200, -1));
 
         txtedicion.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtedicion.setEnabled(false);
         jPanel1.add(txtedicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 200, -1));
 
         txttemas.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txttemas.setEnabled(false);
         jPanel1.add(txttemas, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 270, 200, -1));
 
         txtarea.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtarea.setEnabled(false);
         jPanel1.add(txtarea, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 200, -1));
 
         txtcategoria.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtcategoria.setEnabled(false);
         jPanel1.add(txtcategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 360, 200, -1));
 
         txtisbn.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jPanel1.add(txtisbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 90, 200, -1));
 
         txttamanio.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jPanel1.add(txttamanio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 200, -1));
+        txttamanio.setEnabled(false);
+        jPanel1.add(txttamanio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 60, -1));
 
         txtcopias.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtcopias.setEnabled(false);
         jPanel1.add(txtcopias, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 70, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -168,6 +185,11 @@ public class VerLibro extends javax.swing.JFrame {
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 140, 30));
 
         btnbuscar.setText("Buscar");
+        btnbuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnbuscarMouseClicked(evt);
+            }
+        });
         jPanel1.add(btnbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, -1, 30));
 
         jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
@@ -187,6 +209,14 @@ public class VerLibro extends javax.swing.JFrame {
 
         btnlimpiar.setText("Limpiar");
         jPanel1.add(btnlimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, 90, 30));
+
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel18.setText("DISPO:");
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 390, 50, 20));
+
+        txtdisponible.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtdisponible.setEnabled(false);
+        jPanel1.add(txtdisponible, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, 60, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/img/gradientmediun.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -213,9 +243,74 @@ public class VerLibro extends javax.swing.JFrame {
         this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_btnbackMouseClicked
 
+    private void btnbuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnbuscarMouseClicked
+
+        boolean encontrar = false;
+        if (txtisbn.getText().length() == 0) {
+            JOptionPane.showMessageDialog(null, "Ingrese ID valido...", "Faltan Datos ", JOptionPane.WARNING_MESSAGE);
+        } else if (((String) jComboBox1.getSelectedItem()).equalsIgnoreCase("Libro")) {
+            for (int i = 0; i < biblioteca.Biblioteca.contlibros; i++) {
+                if (biblioteca.Biblioteca.libros[i].getIsbn().equals(Integer.parseInt(txtisbn.getText()))) {
+                    txtaño.setText(Integer.toString(biblioteca.Biblioteca.libros[i].getAnio_publica()));
+                    txtautor.setText((biblioteca.Biblioteca.libros[i].getAutor()));
+                    txtcopias.setText(Integer.toString(biblioteca.Biblioteca.libros[i].getCopias()));
+                    txtdescrip.setText((biblioteca.Biblioteca.libros[i].getDescripcion()));
+                    txtdisponible.setText(Integer.toString(biblioteca.Biblioteca.libros[i].getDisponibles()));
+                    txtedicion.setText(Integer.toString(biblioteca.Biblioteca.libros[i].getEdicion()));
+                    //txtpalabra.setText(String.valueOf(biblioteca.Biblioteca.libros[i].getPalabraClave()));
+                    txtpalabra.setText(Arrays.toString(biblioteca.Biblioteca.libros[i].getPalabraClave()));
+                  
+                    txttemas.setText(String.valueOf(biblioteca.Biblioteca.libros[i].getTemas()));
+                    txttitulo.setText((biblioteca.Biblioteca.libros[i].getTitulo()));
+                    encontrar = true;
+                }
+            }
+        } else if (((String) jComboBox1.getSelectedItem()).equalsIgnoreCase("Revista")) {
+            for (int i = 0; i < biblioteca.Biblioteca.contrevistas; i++) {
+                if (biblioteca.Biblioteca.revistas[i].getId().equals(Integer.parseInt(txtisbn.getText()))) {
+                    txtaño.setText(Integer.toString(biblioteca.Biblioteca.revistas[i].getAnio_publica()));
+                    txtejemplares.setText(Integer.toString(biblioteca.Biblioteca.revistas[i].getEjemplares()));
+                    txtautor.setText((biblioteca.Biblioteca.revistas[i].getAutor()));
+                    txtcopias.setText(Integer.toString(biblioteca.Biblioteca.revistas[i].getCopias()));
+                    txtdescrip.setText((biblioteca.Biblioteca.revistas[i].getDescripcion()));
+                    txtdisponible.setText(Integer.toString(biblioteca.Biblioteca.revistas[i].getDisponibles()));
+                    txtedicion.setText(Integer.toString(biblioteca.Biblioteca.revistas[i].getEdicion()));
+                    txtpalabra.setText(String.valueOf(biblioteca.Biblioteca.revistas[i].getPalabraClave()));
+                    txttemas.setText(String.valueOf(biblioteca.Biblioteca.revistas[i].getTemas()));
+                    txttitulo.setText((biblioteca.Biblioteca.revistas[i].getTitulo()));
+                    txttitulo.setText((biblioteca.Biblioteca.revistas[i].getTitulo()));
+                    txtcategoria.setText((biblioteca.Biblioteca.revistas[i].getCategoria()));
+                    encontrar = true;
+                }
+            }
+        }
+        else if (((String) jComboBox1.getSelectedItem()).equalsIgnoreCase("Tesis")) {
+            for (int i = 0; i < biblioteca.Biblioteca.conttesis; i++) {
+                if (biblioteca.Biblioteca.tesis[i].getId().equals(Integer.parseInt(txtisbn.getText()))) {
+                    txtaño.setText(Integer.toString(biblioteca.Biblioteca.tesis[i].getAnio_publica()));
+                    txtautor.setText((biblioteca.Biblioteca.tesis[i].getAutor()));
+                    txtcopias.setText(Integer.toString(biblioteca.Biblioteca.tesis[i].getCopias()));
+                    txtdescrip.setText((biblioteca.Biblioteca.tesis[i].getDescripcion()));
+                    txtdisponible.setText(Integer.toString(biblioteca.Biblioteca.tesis[i].getDisponibles()));
+                    txtedicion.setText(Integer.toString(biblioteca.Biblioteca.tesis[i].getEdicion()));
+                    txtpalabra.setText(String.valueOf(biblioteca.Biblioteca.tesis[i].getPalabraClave()));
+                    txttemas.setText(String.valueOf(biblioteca.Biblioteca.tesis[i].getTemas()));
+                    txttitulo.setText((biblioteca.Biblioteca.tesis[i].getTitulo()));
+                    txtarea.setText((biblioteca.Biblioteca.tesis[i].getArea()));
+                    encontrar = true;
+                }
+            }
+        }
+            if (!encontrar) {
+                JOptionPane.showMessageDialog(null, "El ID no esta registrado", "Sin Registro ", JOptionPane.WARNING_MESSAGE);
+            }
+
+            // TODO add your handling code here:
+    }//GEN-LAST:event_btnbuscarMouseClicked
+
     /**
-     * @param args the command line arguments
-     */
+         * @param args the command line arguments
+         */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -262,6 +357,7 @@ public class VerLibro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
@@ -277,6 +373,7 @@ public class VerLibro extends javax.swing.JFrame {
     private javax.swing.JTextField txtcategoria;
     private javax.swing.JTextField txtcopias;
     private javax.swing.JTextField txtdescrip;
+    private javax.swing.JTextField txtdisponible;
     private javax.swing.JTextField txtedicion;
     private javax.swing.JTextField txtejemplares;
     private javax.swing.JTextField txtisbn;
