@@ -5,6 +5,9 @@
  */
 package Presentacion;
 
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lusvin
@@ -30,7 +33,7 @@ public class Prestamo extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jcbxfiltro = new javax.swing.JComboBox<>();
         jtxbuscar = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -56,26 +59,46 @@ public class Prestamo extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Presentacion/img/Usac_logo.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 6, 482, 180));
 
-        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Libro", "Revista", "Tesis", "Libro Digital" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 230, 190, -1));
+        jcbxfiltro.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        jcbxfiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "Libro", "Revista", "Tesis" }));
+        getContentPane().add(jcbxfiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 230, 190, -1));
         getContentPane().add(jtxbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 190, -1));
 
-        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "No.", "ID", "TITULO", "AUTOR", "DESCRIPCION", "TEMAS", "EDICIÓN", "DISPONIBLE", "COPIAS", "PRESTADO"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, true
+            };
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 580, 120));
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
+            jTable1.getColumnModel().getColumn(7).setResizable(false);
+            jTable1.getColumnModel().getColumn(8).setResizable(false);
+            jTable1.getColumnModel().getColumn(9).setResizable(false);
+        }
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 810, 140));
 
         jbtbuscar.setText("Buscar");
         getContentPane().add(jbtbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 90, -1));
@@ -89,7 +112,12 @@ public class Prestamo extends javax.swing.JFrame {
         getContentPane().add(jbtmisprestamos, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 150, 40));
 
         jbtfiltro.setText("Filtrar");
-        getContentPane().add(jbtfiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 260, 90, -1));
+        jbtfiltro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtfiltroMouseClicked(evt);
+            }
+        });
+        getContentPane().add(jbtfiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 260, 100, 30));
 
         jbtreportedoc.setText("Reporte Existencias");
         getContentPane().add(jbtreportedoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 150, 40));
@@ -152,6 +180,79 @@ public class Prestamo extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtmisprestamosMouseClicked
 
+    private void jbtfiltroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtfiltroMouseClicked
+            
+         if (((String) jcbxfiltro.getSelectedItem()).equalsIgnoreCase("-")){
+       JOptionPane.showMessageDialog(null, "Seleccione un filtro de documento...", "Error documento", JOptionPane.WARNING_MESSAGE);
+
+         }else if (((String) jcbxfiltro.getSelectedItem()).equalsIgnoreCase("Libro")) {
+             
+             String  tablaLibro[][] = new String [biblioteca.Biblioteca.contlibros][10];
+        
+        for (int i = 0; i < biblioteca.Biblioteca.contlibros; i++) {
+            Boolean prestado = false;
+            tablaLibro[i][0]= (Integer.toString(i));
+            tablaLibro[i][1]=biblioteca.Biblioteca.libros[i].getIsbn().toString();
+            tablaLibro[i][2]=biblioteca.Biblioteca.libros[i].getTitulo();
+            tablaLibro[i][3]=biblioteca.Biblioteca.libros[i].getAutor();
+            tablaLibro[i][4]=biblioteca.Biblioteca.libros[i].getDescripcion();
+            tablaLibro[i][5]=Arrays.toString(biblioteca.Biblioteca.libros[i].getTemas());
+            tablaLibro[i][6]=biblioteca.Biblioteca.libros[i].getEdicion().toString();           
+            tablaLibro[i][7]=biblioteca.Biblioteca.libros[i].getDisponibles().toString();
+            tablaLibro[i][8]=biblioteca.Biblioteca.libros[i].getCopias().toString();
+        }
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            tablaLibro,
+            new String [] {
+                "No.", "ID", "TITULO", "AUTOR", "DESCRIPCION", "TEMAS", "EDICIÓN", "DISPONIBLE", "COPIAS", "PRESTADO"
+            }));
+        }else if (((String) jcbxfiltro.getSelectedItem()).equalsIgnoreCase("Revista")) {
+             
+             String  tablaRevista[][] = new String [biblioteca.Biblioteca.contrevistas][10];
+        
+        for (int i = 0; i < biblioteca.Biblioteca.contrevistas; i++) {
+            Boolean prestado = false;
+            tablaRevista[i][0]= (Integer.toString(i));
+            tablaRevista[i][1]=biblioteca.Biblioteca.revistas[i].getId().toString();
+            tablaRevista[i][2]=biblioteca.Biblioteca.revistas[i].getTitulo();
+            tablaRevista[i][3]=biblioteca.Biblioteca.revistas[i].getAutor();
+            tablaRevista[i][4]=biblioteca.Biblioteca.revistas[i].getDescripcion();
+            tablaRevista[i][5]=Arrays.toString(biblioteca.Biblioteca.revistas[i].getTemas());
+            tablaRevista[i][6]=biblioteca.Biblioteca.revistas[i].getEdicion().toString();           
+            tablaRevista[i][7]=biblioteca.Biblioteca.revistas[i].getDisponibles().toString();
+            tablaRevista[i][8]=biblioteca.Biblioteca.revistas[i].getCopias().toString();
+        }
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            tablaRevista,
+            new String [] {
+                "No.", "ID", "TITULO", "AUTOR", "DESCRIPCION", "TEMAS", "EDICIÓN", "DISPONIBLE", "COPIAS", "PRESTADO"
+            }));
+        }
+         else if (((String) jcbxfiltro.getSelectedItem()).equalsIgnoreCase("Tesis")) {
+             
+             String  tablaTesis[][] = new String [biblioteca.Biblioteca.conttesis][10];
+        
+        for (int i = 0; i < biblioteca.Biblioteca.conttesis; i++) {
+            Boolean prestado = false;
+            tablaTesis[i][0]= (Integer.toString(i));
+            tablaTesis[i][1]=biblioteca.Biblioteca.tesis[i].getId().toString();
+            tablaTesis[i][2]=biblioteca.Biblioteca.tesis[i].getTitulo();
+            tablaTesis[i][3]=biblioteca.Biblioteca.tesis[i].getAutor();
+            tablaTesis[i][4]=biblioteca.Biblioteca.tesis[i].getDescripcion();
+            tablaTesis[i][5]=Arrays.toString(biblioteca.Biblioteca.tesis[i].getTemas());
+            tablaTesis[i][6]=biblioteca.Biblioteca.tesis[i].getEdicion().toString();           
+            tablaTesis[i][7]=biblioteca.Biblioteca.tesis[i].getDisponibles().toString();
+            tablaTesis[i][8]=biblioteca.Biblioteca.tesis[i].getCopias().toString();
+        }
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            tablaTesis,
+            new String [] {
+                "No.", "ID", "TITULO", "AUTOR", "DESCRIPCION", "TEMAS", "EDICIÓN", "DISPONIBLE", "COPIAS", "PRESTADO"
+            }));
+        }
+
+    }//GEN-LAST:event_jbtfiltroMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -188,7 +289,6 @@ public class Prestamo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -204,6 +304,7 @@ public class Prestamo extends javax.swing.JFrame {
     private javax.swing.JButton jbtlogout;
     private javax.swing.JButton jbtmisprestamos;
     private javax.swing.JButton jbtreportedoc;
+    private javax.swing.JComboBox<String> jcbxfiltro;
     private javax.swing.JTextField jtxbuscar;
     // End of variables declaration//GEN-END:variables
 }

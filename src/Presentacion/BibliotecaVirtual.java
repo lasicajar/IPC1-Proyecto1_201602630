@@ -5,6 +5,8 @@
  */
 package Presentacion;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Lusvin
@@ -77,23 +79,58 @@ public class BibliotecaVirtual extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5"
+                "No.", "ID", "TITULO", "EDICION", "AUTOR", "TEMAS", "DESCRIPCION", "PRESTADO"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, true
+            };
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 330, 580, 120));
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+            jTable1.getColumnModel().getColumn(3).setResizable(false);
+            jTable1.getColumnModel().getColumn(4).setResizable(false);
+            jTable1.getColumnModel().getColumn(5).setResizable(false);
+            jTable1.getColumnModel().getColumn(6).setResizable(false);
+            jTable1.getColumnModel().getColumn(7).setResizable(false);
+        }
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 780, 120));
 
         jbtBuscar.setText("Buscar");
+        jbtBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbtBuscarMouseClicked(evt);
+            }
+        });
         jPanel1.add(jbtBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, -1, -1));
         jPanel1.add(jtxbuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 220, 210, 20));
 
@@ -149,6 +186,34 @@ public class BibliotecaVirtual extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jbtBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtBuscarMouseClicked
+            
+        String  tablaLibroDigital[][] = new String [biblioteca.Biblioteca.contlibrodigital][7];
+        
+        for (int i = 0; i < biblioteca.Biblioteca.contlibrodigital; i++) {
+            Boolean prestado = false;
+            tablaLibroDigital[i][0]= (Integer.toString(i));
+            tablaLibroDigital[i][1]=biblioteca.Biblioteca.librosDigital[i].getId().toString();
+            tablaLibroDigital[i][2]=biblioteca.Biblioteca.librosDigital[i].getTitulo();
+            tablaLibroDigital[i][3]=biblioteca.Biblioteca.librosDigital[i].getEdicion().toString();
+            tablaLibroDigital[i][4]=biblioteca.Biblioteca.librosDigital[i].getAutor();
+            tablaLibroDigital[i][5]=Arrays.toString(biblioteca.Biblioteca.librosDigital[i].getTemas());
+            tablaLibroDigital[i][6]=biblioteca.Biblioteca.librosDigital[i].getDescripcion();
+            //tablaLibroDigital[i][7]= Boolean.toString(prestado);
+                  
+        }
+        
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            tablaLibroDigital,
+            new String [] {
+                "No.", "ID", "TITULO", "EDICION", "AUTOR", "TEMAS", "DESCRIPCION", "PRESTADO"
+            }));
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtBuscarMouseClicked
 
     /**
      * @param args the command line arguments
